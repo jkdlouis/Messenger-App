@@ -5,6 +5,8 @@ var jwt = require('jsonwebtoken');
 var User = require('../models/user');
 var Message = require('../models/message');
 
+//get message
+
 router.get('/', function (req, res, next) {
     Message.find()
         .populate('user', 'firstName')
@@ -33,6 +35,8 @@ router.use('/', function (req, res, next) {
         next();
     })
 });
+
+//save messsage
 
 router.post('/', function (req, res, next) {
     var decoded = jwt.decode(req.query.token);
@@ -63,6 +67,8 @@ router.post('/', function (req, res, next) {
         });
     });
 });
+
+//update message
 
 router.patch('/:id', function (req, res, next) {
     var decoded = jwt.decode(req.query.token);
@@ -100,6 +106,8 @@ router.patch('/:id', function (req, res, next) {
         });
     });
 });
+
+//delete message
 
 router.delete('/:id', function (req, res, next) {
     var decoded = jwt.decode(req.query.token);
